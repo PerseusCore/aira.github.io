@@ -1,0 +1,127 @@
+.marketplace-container {
+    padding: 20px;
+  }
+  
+  .marketplace-header {
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .marketplace-description {
+    color: #6c757d;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .marketplace-search-bar {
+    max-width: 800px;
+    margin: 0 auto 30px;
+  }
+  
+  .marketplace-filters {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+  }
+  
+  .marketplace-actions {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .listing-card {
+    height: 100%;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  
+  .listing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+  
+  .listing-preview {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+  }
+  
+  .listing-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .placeholder-preview {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f0f0f0;
+    color: #6c757d;
+    font-size: 3rem;
+  }
+  
+  .listing-price {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(111, 66, 193, 0.9);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+  }
+  
+  .listing-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    font-size: 0.9rem;
+  }
+  
+  .no-listings {
+    text-align: center;
+    padding: 40px 0;
+    color: #6c757d;
+  }
+  
+  .marketplace-features {
+    padding: 30px 0;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+  }
+  
+  .feature-card {
+    text-align: center;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    height: 100%;
+  }
+  
+  .feature-icon {
+    font-size: 2.5rem;
+    color: #6f42c1;
+    margin-bottom: 15px;
+  }
+  
+  @media (max-width: 768px) {
+    .marketplace-filters .row {
+      flex-direction: column;
+    }
+    
+    .sort-filter {
+      margin-top: 15px;
+      justify-content: flex-start !important;
+    }
+    
+    .listing-preview {
+      height: 150px;
+    }
+  }
+  

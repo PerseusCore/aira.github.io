@@ -1,0 +1,52 @@
+.video-detail-container {
+    padding: 20px;
+  }
+  
+  .video-detail-header {
+    margin-bottom: 30px;
+  }
+  
+  .video-description {
+    color: #6c757d;
+    margin-top: 10px;
+  }
+  
+  .video-player-container {
+    position: relative;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    background-color: #000;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+  .react-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .video-metadata {
+    margin-top: 15px;
+  }
+  
+  .video-info {
+    color: #6c757d;
+    font-size: 0.9rem;
+  }
+  
+  .mocap-stats {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 15px;
+  }
+  
+  .mocap-stats li {
+    margin-bottom: 8px;
+  }
+  
+  @media (max-width: 768px) {
+    .video-detail-container {
+      padding: 15px;
+    }
+  }
+  

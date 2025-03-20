@@ -1,0 +1,135 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f9fa;
+  }
+  
+  /* Header styles */
+  .navbar-brand {
+    font-weight: 700;
+    color: #6f42c1;
+  }
+  
+  .nav-link {
+    font-weight: 500;
+  }
+  
+  .nav-link.active {
+    color: #6f42c1 !important;
+  }
+  
+  /* Loading spinner */
+  .loading-spinner {
+    width: 2rem;
+    height: 2rem;
+    border: 0.25rem solid rgba(111, 66, 193, 0.3);
+    border-radius: 50%;
+    border-top-color: #6f42c1;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  /* Servo sliders */
+  .servo-slider {
+    height: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .servo-slider::-webkit-slider-thumb {
+    background: #6f42c1;
+  }
+  
+  .servo-slider::-moz-range-thumb {
+    background: #6f42c1;
+  }
+  
+  /* Position items */
+  .position-item {
+    transition: background-color 0.2s;
+  }
+  
+  .position-item:hover {
+    background-color: #f0f0f0;
+  }
+  
+  .position-name {
+    font-weight: 500;
+  }
+  
+  /* Skill cards */
+  .skill-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .skill-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Robot preview container */
+  .robot-preview {
+    height: 300px;
+    background-color: #f0f0f0;
+    border-radius: 0.25rem;
+  }
+  
+  /* JSON preview */
+  .preview-container {
+    max-height: 400px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    border-radius: 0.25rem;
+    padding: 1rem;
+  }
+  
+  pre {
+    margin-bottom: 0;
+    white-space: pre-wrap;
+  }
+  
+  /* Feature cards */
+  .feature-card {
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Step indicator */
+  .step-indicator .rounded-circle {
+    transition: background-color 0.3s;
+  }
+  
+  /* Footer */
+  footer {
+    background-color: #343a40;
+    color: white;
+    padding: 2rem 0;
+    margin-top: 3rem;
+  }
+  
+  footer a {
+    color: #adb5bd;
+    text-decoration: none;
+  }
+  
+  footer a:hover {
+    color: white;
+    text-decoration: underline;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .robot-preview {
+      height: 200px;
+    }
+    
+    .jumbotron {
+      padding: 2rem !important;
+    }
+  }
+  

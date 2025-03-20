@@ -1,0 +1,53 @@
+.dof-converter {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .converter-status {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .converter-status.error {
+    background-color: rgba(220, 53, 69, 0.1);
+    border-radius: 5px;
+  }
+  
+  .conversion-complete {
+    padding: 10px;
+  }
+  
+  .dof-preview {
+    margin-top: 30px;
+  }
+  
+  .dof-data-container {
+    background-color: #272822;
+    border-radius: 5px;
+    padding: 15px;
+    max-height: 300px;
+    overflow-y: auto;
+  }
+  
+  .dof-data-preview {
+    color: #f8f8f2;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.9rem;
+    white-space: pre-wrap;
+  }
+  
+  .form-range::-webkit-slider-thumb {
+    background: #6f42c1;
+  }
+  
+  .form-range::-moz-range-thumb {
+    background: #6f42c1;
+  }
+  
+  .form-range::-ms-thumb {
+    background: #6f42c1;
+  }
+  

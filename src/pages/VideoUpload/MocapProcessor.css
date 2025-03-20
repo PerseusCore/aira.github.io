@@ -1,0 +1,46 @@
+.mocap-processor {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .processor-status {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .processor-status.success {
+    background-color: rgba(40, 167, 69, 0.1);
+    border-radius: 5px;
+  }
+  
+  .processor-status.error {
+    background-color: rgba(220, 53, 69, 0.1);
+    border-radius: 5px;
+  }
+  
+  .mocap-stats {
+    margin-top: 20px;
+  }
+  
+  .stat-item {
+    text-align: center;
+    padding: 15px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  }
+  
+  .stat-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #6f42c1;
+  }
+  
+  .stat-label {
+    color: #6c757d;
+    font-size: 0.9rem;
+    margin-top: 5px;
+  }
+  
