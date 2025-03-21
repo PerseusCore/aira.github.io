@@ -163,6 +163,28 @@ const SkillExport = () => {
             exportStatus={exportStatus}
           />
           
+          <InteractiveRobotControl 
+            externalServoPositions={servoPositions}
+            onExternalServoChange={handleServoChange}
+            externalSavedPositions={savedPositions}
+            onExternalSavePosition={(name, positions) => {
+              setSavedPositions({
+                ...savedPositions,
+                [name]: { ...positions }
+              });
+            }}
+            onExternalLoadPosition={(name) => {
+              if (savedPositions[name]) {
+                setServoPositions(savedPositions[name]);
+              }
+            }}
+            onExternalDeletePosition={(name) => {
+              const updatedPositions = { ...savedPositions };
+              delete updatedPositions[name];
+              setSavedPositions(updatedPositions);
+            }}
+          />
+          
           {exportStatus.status === 'success' && (
             <ArcExportPanel 
               skillId={exportStatus.id}
