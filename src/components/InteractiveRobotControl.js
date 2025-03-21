@@ -326,7 +326,7 @@ const InteractiveRobotControl = ({
                 <h3 className="card-title">Robot Preview</h3>
               </div>
               <div className="card-body">
-                <div className="robot-preview">
+              <div className="robot-preview" style={{ height: '400px', position: 'relative', overflow: 'hidden' }}>
                   <RobotVisualization servoPositions={activeServoPositions} />
                 </div>
               </div>
