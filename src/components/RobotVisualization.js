@@ -344,7 +344,7 @@ const RobotVisualization = ({ servoPositions }) => {
     };
   }, [servoPositions]);
   
-  return <div ref={mountRef} style={{ width: '100%', height: '400px' }} />;
+  return <div ref={mountRef} style={{ width: '100%', height: '300px' }} />;
 };
 
 export default RobotVisualization;

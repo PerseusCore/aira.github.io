@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
+import myImage from '../assets/isaac-lab-1980x1080.jpg'
 
 const Home = () => {
   return (
@@ -24,7 +25,7 @@ const Home = () => {
             </div>
             <div className="col-lg-6">
               <div className="hero-image">
-                <img src="/images/robot-hero.png" alt="AIRA Humanoid Robot" className="img-fluid" />
+                <img src={myImage} alt="AIRA Humanoid Robot" className="img-fluid" />
               </div>
             </div>
           </div>
