@@ -232,12 +232,7 @@ const RobotVisualization = ({ servoPositions }) => {
       // Create a separate joint for Left Shoulder Pan that moves up/down
       if (servoPositions.Left_Shoulder_Pan) {
         // First rotate the shoulder joint
-        robotParts.leftShoulder.rotation.y = convertToRad(servoPositions.Left_Shoulder_Pan);
-        
-        // Then move the entire shoulder up/down based on pan value
-        // Map from 0-180 to -0.3 to 0.3 for vertical movement
-        const verticalOffset = ((servoPositions.Left_Shoulder_Pan - 90) / 180) * 0.6;
-        robotParts.leftShoulder.position.y = 0.6 + verticalOffset;
+        robotParts.leftShoulder.rotation.z = convertToRad(servoPositions.Left_Shoulder_Pan - 90);
       }
       
       if (servoPositions.Left_Elbow) {
@@ -252,12 +247,7 @@ const RobotVisualization = ({ servoPositions }) => {
       // Create a separate joint for Right Shoulder Pan that moves up/down
       if (servoPositions.Right_Shoulder_Pan) {
         // First rotate the shoulder joint
-        robotParts.rightShoulder.rotation.y = convertToRad(servoPositions.Right_Shoulder_Pan);
-        
-        // Then move the entire shoulder up/down based on pan value
-        // Map from 0-180 to -0.3 to 0.3 for vertical movement
-        const verticalOffset = ((servoPositions.Right_Shoulder_Pan - 90) / 180) * 0.6;
-        robotParts.rightShoulder.position.y = 0.6 + verticalOffset;
+        robotParts.rightShoulder.rotation.z = convertToRad(servoPositions.Right_Shoulder_Pan + 90);
       }
       
       if (servoPositions.Right_Elbow) {
