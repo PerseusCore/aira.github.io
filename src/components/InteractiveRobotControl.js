@@ -320,19 +320,6 @@ const InteractiveRobotControl = ({
         </div>
         
         <div className="col-md-4">
-          {!hideRobotVisualization && (
-            <div className="card mb-4">
-              <div className="card-header">
-                <h3 className="card-title">Robot Preview</h3>
-              </div>
-              <div className="card-body">
-              <div className="robot-preview" style={{ height: '400px', position: 'relative', overflow: 'hidden' }}>
-                  <RobotVisualization servoPositions={activeServoPositions} />
-                </div>
-              </div>
-            </div>
-          )}
-          
           <div className="card mb-4">
             <div className="card-header">
               <h3 className="card-title">Saved Positions</h3>
@@ -351,6 +338,19 @@ const InteractiveRobotControl = ({
               />
             </div>
           </div>
+          
+          {!hideRobotVisualization && (
+            <div className="card mb-4">
+              <div className="card-header">
+                <h3 className="card-title">Robot Preview</h3>
+              </div>
+              <div className="card-body">
+                <div className="robot-preview">
+                  <RobotVisualization servoPositions={activeServoPositions} />
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

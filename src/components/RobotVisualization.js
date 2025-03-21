@@ -1,10 +1,17 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import * as THREE from 'three';
 
 const RobotVisualization = ({ servoPositions }) => {
   const mountRef = useRef(null);
   
   useEffect(() => {
+    // Clear any existing content
+    if (mountRef.current) {
+      while (mountRef.current.firstChild) {
+        mountRef.current.removeChild(mountRef.current.firstChild);
+      }
+    }
+  
     // Scene setup
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0xf0f0f0);
@@ -337,7 +344,7 @@ const RobotVisualization = ({ servoPositions }) => {
     };
   }, [servoPositions]);
   
-  return <div ref={mountRef} className="robot-visualization-container" />;
+  return <div ref={mountRef} style={{ width: '100%', height: '400px' }} />;
 };
 
 export default RobotVisualization;
