@@ -10,7 +10,7 @@ import SkillExport from './pages/SkillExport';
 import VideoSearch from './pages/VideoSearch/VideoSearch';
 import VideoDetail from './pages/VideoSearch/VideoDetail';
 import VideoUpload from './pages/VideoUpload/VideoUpload';
-import Marketplace from './pages/Marketplace/Marketplace';
+import Marketplace from './pages/Marketplace';
 import ListingDetail from './pages/Marketplace/ListingDetail';
 import CreateListing from './pages/Marketplace/CreateListing';
 import './App.css';

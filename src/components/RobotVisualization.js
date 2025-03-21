@@ -227,6 +227,13 @@ const RobotVisualization = ({ servoPositions }) => {
       // Left arm
       if (servoPositions.Left_Shoulder) {
         robotParts.leftShoulder.rotation.x = convertToRad(servoPositions.Left_Shoulder);
+        // Add vertical movement based on shoulder position
+        robotParts.leftShoulder.position.y = 0.6 + (convertToRad(servoPositions.Left_Shoulder) * 0.2);
+      }
+      if (servoPositions.Left_Shoulder_Pan) {
+        robotParts.leftShoulder.rotation.y = convertToRad(servoPositions.Left_Shoulder_Pan);
+        // Add horizontal movement based on shoulder pan
+        robotParts.leftShoulder.position.z = convertToRad(servoPositions.Left_Shoulder_Pan) * 0.2;
       }
       if (servoPositions.Left_Elbow) {
         robotParts.leftElbow.rotation.x = convertToRad(servoPositions.Left_Elbow);
@@ -235,6 +242,13 @@ const RobotVisualization = ({ servoPositions }) => {
       // Right arm
       if (servoPositions.Right_Shoulder) {
         robotParts.rightShoulder.rotation.x = convertToRad(servoPositions.Right_Shoulder);
+        // Add vertical movement based on shoulder position
+        robotParts.rightShoulder.position.y = 0.6 + (convertToRad(servoPositions.Right_Shoulder) * 0.2);
+      }
+      if (servoPositions.Right_Shoulder_Pan) {
+        robotParts.rightShoulder.rotation.y = convertToRad(servoPositions.Right_Shoulder_Pan);
+        // Add horizontal movement based on shoulder pan
+        robotParts.rightShoulder.position.z = convertToRad(servoPositions.Right_Shoulder_Pan) * 0.2;
       }
       if (servoPositions.Right_Elbow) {
         robotParts.rightElbow.rotation.x = convertToRad(servoPositions.Right_Elbow);
@@ -323,7 +337,7 @@ const RobotVisualization = ({ servoPositions }) => {
     };
   }, [servoPositions]);
   
-  return <div ref={mountRef} style={{ width: '100%', height: '300px' }} />;
+  return <div ref={mountRef} style={{ width: '100%', height: '400px' }} />;
 };
 
 export default RobotVisualization;

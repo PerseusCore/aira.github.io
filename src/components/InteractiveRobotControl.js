@@ -16,8 +16,10 @@ const InteractiveRobotControl = () => {
     Head_Pan: 90,
     Head_Tilt: 90,
     Left_Shoulder: 90,
+    Left_Shoulder_Pan: 90,
     Left_Elbow: 90,
     Right_Shoulder: 90,
+    Right_Shoulder_Pan: 90,
     Right_Elbow: 90,
     Waist: 90,
     Torso: 90,
@@ -49,8 +51,8 @@ const InteractiveRobotControl = () => {
   
   const bodyServos = [
     'Head_Pan', 'Head_Tilt', 
-    'Left_Shoulder', 'Left_Elbow', 
-    'Right_Shoulder', 'Right_Elbow',
+    'Left_Shoulder', 'Left_Shoulder_Pan', 'Left_Elbow', 
+    'Right_Shoulder', 'Right_Shoulder_Pan', 'Right_Elbow',
     'Waist', 'Torso',
     'Left_Hip', 'Left_Knee', 'Left_Ankle',
     'Right_Hip', 'Right_Knee', 'Right_Ankle'
@@ -158,12 +160,14 @@ const InteractiveRobotControl = () => {
     
     // Mirror body servos
     mirroredPositions.Left_Shoulder = servoPositions.Right_Shoulder;
+    mirroredPositions.Left_Shoulder_Pan = servoPositions.Right_Shoulder_Pan;
     mirroredPositions.Left_Elbow = servoPositions.Right_Elbow;
     mirroredPositions.Left_Hip = servoPositions.Right_Hip;
     mirroredPositions.Left_Knee = servoPositions.Right_Knee;
     mirroredPositions.Left_Ankle = servoPositions.Right_Ankle;
     
     mirroredPositions.Right_Shoulder = servoPositions.Left_Shoulder;
+    mirroredPositions.Right_Shoulder_Pan = servoPositions.Left_Shoulder_Pan;
     mirroredPositions.Right_Elbow = servoPositions.Left_Elbow;
     mirroredPositions.Right_Hip = servoPositions.Left_Hip;
     mirroredPositions.Right_Knee = servoPositions.Left_Knee;

@@ -163,8 +163,6 @@ const SkillExport = () => {
             exportStatus={exportStatus}
           />
           
-          <InteractiveRobotControl />
-          
           {exportStatus.status === 'success' && (
             <ArcExportPanel 
               skillId={exportStatus.id}

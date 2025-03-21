@@ -8,6 +8,7 @@ const apiRoutes = require('./routes/api');
 const videoRoutes = require('./routes/videoRoutes');
 const marketplaceRoutes = require('./routes/marketplaceRoutes');
 const dofRoutes = require('./routes/dofRoutes');
+const paypalRoutes = require('./routes/paypal');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -37,6 +38,7 @@ app.use('/api', apiRoutes);
 app.use('/api/videos', videoRoutes);
 app.use('/api/marketplace', marketplaceRoutes);
 app.use('/api/dof', dofRoutes);
+app.use('/api/paypal', paypalRoutes);
 
 // Serve static files from the React app in production
 if (process.env.NODE_ENV === 'production') {

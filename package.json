@@ -24,6 +24,8 @@
   "license": "ISC",
   "dependencies": {
     "@mediapipe/pose": "^0.5.1675469404",
+    "@paypal/paypal-js": "^8.2.0",
+    "@paypal/react-paypal-js": "^8.8.2",
     "@popperjs/core": "^2.11.8",
     "@tensorflow/tfjs": "^4.22.0",
     "axios": "^1.8.4",

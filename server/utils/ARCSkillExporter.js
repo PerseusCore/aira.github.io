@@ -60,33 +60,35 @@ class ARCSkillExporter {
     const servoMapping = {
       // Body servos
       'Head_Pan': 'D0',
-      'Head_Tilt': 'D1',
-      'Left_Shoulder': 'D2',
-      'Left_Elbow': 'D3',
-      'Right_Shoulder': 'D4',
-      'Right_Elbow': 'D5',
-      'Waist': 'D6',
-      'Torso': 'D7',
-      'Left_Hip': 'D8',
-      'Left_Knee': 'D9',
-      'Left_Ankle': 'D10',
-      'Right_Hip': 'D11',
-      'Right_Knee': 'D12',
-      'Right_Ankle': 'D13',
-      
-      // Hand servos
-      'Left_Thumb': 'D14',
-      'Left_Index': 'D15',
-      'Left_Middle': 'D16',
-      'Left_Ring': 'D17',
-      'Left_Pinky': 'D18',
-      'Left_Wrist': 'D19',
-      'Right_Thumb': 'D20',
-      'Right_Index': 'D21',
-      'Right_Middle': 'D22',
-      'Right_Ring': 'D23',
-      'Right_Pinky': 'D24',
-      'Right_Wrist': 'D25'
+          'Head_Tilt': 'D1',
+          'Left_Shoulder': 'D2',
+          'Left_Shoulder_Pan': 'D3',
+          'Left_Elbow': 'D4',
+          'Right_Shoulder': 'D5',
+          'Right_Shoulder_Pan': 'D6',
+          'Right_Elbow': 'D7',
+          'Waist': 'D14',
+          'Torso': 'D15',
+          'Left_Hip': 'D8',
+          'Left_Knee': 'D9',
+          'Left_Ankle': 'D10',
+          'Right_Hip': 'D11',
+          'Right_Knee': 'D12',
+          'Right_Ankle': 'D13',
+          
+          // Hand servos
+          'Left_Thumb': 'V1',
+          'Left_Index': 'V2',
+          'Left_Middle': 'V3',
+          'Left_Ring': 'V4',
+          'Left_Pinky': 'V5',
+          'Left_Wrist': 'V6',
+          'Right_Thumb': 'V7',
+          'Right_Index': 'V8',
+          'Right_Middle': 'V9',
+          'Right_Ring': 'V10',
+          'Right_Pinky': 'V11',
+          'Right_Wrist': 'V12'
     };
 
     // Create servo configuration

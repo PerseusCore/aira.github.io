@@ -1,318 +1,142 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import './ListingDetail.css';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import PayPalButton from '../../components/PayPalButton';
 
-const ListingDetail = () => {
-  const { listingId } = useParams();
-  const navigate = useNavigate();
+const ListingDetail = ({ listing, onPurchase }) => {
+  const [showPayment, setShowPayment] = useState(false);
+  const [purchaseSuccess, setPurchaseSuccess] = useState(false);
   
-  const [listing, setListing] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [purchaseStatus, setPurchaseStatus] = useState(null);
+  // Mock data for testing
+  const mockListing = {
+    id: 1,
+    name: 'Walking Pattern',
+    description: 'Smooth bipedal walking pattern for humanoid robots. This skill provides a stable and efficient walking gait for AIRA humanoid robots, with adjustable parameters for speed, stride length, and stability.',
+    author: 'RoboticsExpert',
+    price: '19.99',
+    createdAt: new Date().toISOString(),
+    category: 'locomotion',
+    details: 'This skill was developed using motion capture data from human subjects and optimized for the AIRA robot platform. It includes balance compensation algorithms and adaptive foot placement for uneven terrain.'
+  };
   
-  // Fetch listing details on component mount
-  useEffect(() => {
-    const fetchListingDetails = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
-        
-        const response = await fetch(`/api/marketplace/listings/${listingId}`);
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch listing details');
-        }
-        
-        const data = await response.json();
-        setListing(data.listing);
-        setIsLoading(false);
-      } catch (err) {
-        console.error('Error fetching listing details:', err);
-        setError(err.message || 'An error occurred while fetching listing details');
-        setIsLoading(false);
-      }
-    };
-    
-    if (listingId) {
-      fetchListingDetails();
-    }
-  }, [listingId]);
+  const activeListing = listing || mockListing;
   
-  // Handle purchase
-  const handlePurchase = async () => {
-    try {
-      setPurchaseStatus({ status: 'processing', message: 'Processing purchase...' });
-      
-      const response = await fetch(`/api/marketplace/listings/${listingId}/purchase`, {
-        method: 'POST'
-      });
-      
-      if (!response.ok) {
-        throw new Error('Failed to complete purchase');
-      }
-      
-      const data = await response.json();
-      setPurchaseStatus({
-        status: 'success',
-        message: 'Purchase successful!',
-        transaction: data.transaction
-      });
-    } catch (err) {
-      console.error('Error purchasing listing:', err);
-      setPurchaseStatus({
-        status: 'error',
-        message: err.message || 'An error occurred during purchase'
-      });
+  const handlePaymentSuccess = (details) => {
+    console.log('Payment successful:', details);
+    setPurchaseSuccess(true);
+    if (onPurchase) {
+      onPurchase(activeListing.id, details);
     }
   };
   
-  // Navigate back to marketplace
-  const handleBackToMarketplace = () => {
-    navigate('/marketplace');
+  const handlePaymentError = (error) => {
+    console.error('Payment error:', error);
   };
-  
-  if (isLoading) {
-    return (
-      <div className="listing-detail-container">
-        <div className="text-center my-5">
-          <div className="spinner-border text-primary" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
-          <p className="mt-2">Loading listing details...</p>
-        </div>
-      </div>
-    );
-  }
-  
-  if (error) {
-    return (
-      <div className="listing-detail-container">
-        <div className="alert alert-danger" role="alert">
-          {error}
-        </div>
-        <button 
-          className="btn btn-primary"
-          onClick={handleBackToMarketplace}
-        >
-          Back to Marketplace
-        </button>
-      </div>
-    );
-  }
-  
-  if (!listing) {
-    return (
-      <div className="listing-detail-container">
-        <div className="alert alert-warning" role="alert">
-          Listing not found
-        </div>
-        <button 
-          className="btn btn-primary"
-          onClick={handleBackToMarketplace}
-        >
-          Back to Marketplace
-        </button>
-      </div>
-    );
-  }
   
   return (
-    <div className="listing-detail-container">
-      <div className="listing-detail-header">
-        <button 
-          className="btn btn-outline-primary mb-3"
-          onClick={handleBackToMarketplace}
-        >
-          &larr; Back to Marketplace
-        </button>
-        <h2>{listing.title}</h2>
-        <div className="listing-meta">
-          <div className="author-info">
-            <span>By {listing.author.name}</span>
-            <div className="author-rating">
-              <i className="bi bi-star-fill text-warning me-1"></i>
-              <span>{listing.author.rating}</span>
-            </div>
-          </div>
-          <div className="listing-rating">
-            <i className="bi bi-star-fill text-warning me-1"></i>
-            <span>{listing.rating}</span>
-            <span className="text-muted ms-1">({listing.reviews.length} reviews)</span>
-          </div>
-        </div>
-      </div>
-      
+    <div className="container my-4">
       <div className="row">
-        <div className="col-lg-8">
-          <div className="listing-preview-container">
-            {listing.demoVideoUrl ? (
-              <video 
-                src={listing.demoVideoUrl} 
-                controls 
-                className="listing-video"
-              />
-            ) : listing.previewUrl ? (
-              <img 
-                src={listing.previewUrl} 
-                alt={listing.title} 
-                className="listing-image"
-              />
-            ) : (
-              <div className="placeholder-preview">
-                <i className="bi bi-robot"></i>
+        <div className="col-md-8">
+          <h2>{activeListing.name}</h2>
+          <p className="lead">{activeListing.description}</p>
+          
+          <div className="card mb-4">
+            <div className="card-header">
+              <h4>Skill Details</h4>
+            </div>
+            <div className="card-body">
+              <p>{activeListing.details}</p>
+              
+              <div className="row mt-4">
+                <div className="col-md-6">
+                  <h5>Author</h5>
+                  <p>{activeListing.author}</p>
+                </div>
+                <div className="col-md-6">
+                  <h5>Category</h5>
+                  <p className="text-capitalize">{activeListing.category}</p>
+                </div>
               </div>
-            )}
-          </div>
-          
-          <div className="listing-description mt-4">
-            <h4>Description</h4>
-            <p>{listing.description}</p>
-          </div>
-          
-          <div className="listing-tags mb-4">
-            {listing.tags && listing.tags.map(tag => (
-              <span key={tag} className="badge bg-secondary me-1">{tag}</span>
-            ))}
-          </div>
-          
-          <div className="listing-specifications mb-4">
-            <h4>Specifications</h4>
-            <div className="row">
-              <div className="col-md-6">
-                <ul className="specs-list">
-                  <li><strong>Servos:</strong> {listing.specifications.servos}</li>
-                  <li><strong>Duration:</strong> {listing.specifications.duration}</li>
-                </ul>
-              </div>
-              <div className="col-md-6">
-                <ul className="specs-list">
-                  <li><strong>Complexity:</strong> {listing.specifications.complexity}</li>
-                  <li><strong>Energy Efficiency:</strong> {listing.specifications.energyEfficiency}</li>
-                </ul>
+              
+              <div className="row mt-2">
+                <div className="col-md-6">
+                  <h5>Created</h5>
+                  <p>{new Date(activeListing.createdAt).toLocaleDateString()}</p>
+                </div>
+                <div className="col-md-6">
+                  <h5>Compatibility</h5>
+                  <p>AIRA Humanoid Robot v2.0+</p>
+                </div>
               </div>
             </div>
           </div>
           
-          <div className="listing-reviews">
-            <h4>Reviews</h4>
-            {listing.reviews.length > 0 ? (
-              <div className="reviews-list">
-                {listing.reviews.map(review => (
-                  <div className="review-item" key={review.id}>
-                    <div className="review-header">
-                      <div className="reviewer">{review.user}</div>
-                      <div className="review-rating">
-                        {[...Array(5)].map((_, i) => (
-                          <i 
-                            key={i} 
-                            className={`bi ${i < review.rating ? 'bi-star-fill' : 'bi-star'} text-warning`}
-                          ></i>
-                        ))}
-                      </div>
-                      <div className="review-date">
-                        {new Date(review.date).toLocaleDateString()}
-                      </div>
-                    </div>
-                    <div className="review-comment">
-                      {review.comment}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <p>No reviews yet.</p>
-            )}
+          <div className="card">
+            <div className="card-header">
+              <h4>Requirements</h4>
+            </div>
+            <div className="card-body">
+              <ul>
+                <li>AIRA Humanoid Robot with firmware v3.5 or higher</li>
+                <li>ARC Software v2023.1 or higher</li>
+                <li>Minimum 14 servos for body movements</li>
+              </ul>
+            </div>
           </div>
         </div>
         
-        <div className="col-lg-4">
-          <div className="card purchase-card">
-            <div className="card-header">
-              <h5 className="card-title mb-0">Purchase</h5>
+        <div className="col-md-4">
+          <div className="card">
+            <div className="card-header bg-primary text-white">
+              <h4 className="mb-0">Purchase Skill</h4>
             </div>
             <div className="card-body">
-              <div className="price-display mb-3">
-                <span className="price">${listing.price.toFixed(2)}</span>
+              <div className="d-flex justify-content-between mb-3">
+                <h5>Price:</h5>
+                <h5>${activeListing.price}</h5>
               </div>
               
-              <div className="purchase-stats mb-3">
-                <div className="stat-item">
-                  <i className="bi bi-cart-check"></i>
-                  <span>{listing.sales} sales</span>
-                </div>
-                <div className="stat-item">
-                  <i className="bi bi-calendar"></i>
-                  <span>Updated {new Date(listing.updatedAt).toLocaleDateString()}</span>
-                </div>
-              </div>
-              
-              <button 
-                className="btn btn-primary btn-lg w-100 mb-3"
-                onClick={handlePurchase}
-                disabled={purchaseStatus?.status === 'processing'}
-              >
-                {purchaseStatus?.status === 'processing' ? (
-                  <>
-                    <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-                    Processing...
-                  </>
-                ) : 'Buy Now'}
-              </button>
-              
-              {purchaseStatus?.status === 'success' && (
-                <div className="alert alert-success">
-                  <p className="mb-2">{purchaseStatus.message}</p>
-                  <a 
-                    href={purchaseStatus.transaction.downloadUrl} 
-                    className="btn btn-sm btn-success"
-                    download
-                  >
+              {purchaseSuccess ? (
+                <div>
+                  <div className="alert alert-success">
+                    Thank you for your purchase! You can now download this skill.
+                  </div>
+                  <Link to={`/skills/${activeListing.id}/download`} className="btn btn-primary btn-lg w-100">
                     Download Skill
-                  </a>
+                  </Link>
                 </div>
+              ) : showPayment ? (
+                <div>
+                  <h5 className="mb-3">Complete Purchase</h5>
+                  <PayPalButton 
+                    amount={activeListing.price} 
+                    description={`Purchase of ${activeListing.name} skill`}
+                    onSuccess={handlePaymentSuccess}
+                    onError={handlePaymentError}
+                  />
+                  <button 
+                    className="btn btn-outline-secondary w-100 mt-3"
+                    onClick={() => setShowPayment(false)}
+                  >
+                    Cancel
+                  </button>
+                </div>
+              ) : (
+                <button 
+                  className="btn btn-success btn-lg w-100"
+                  onClick={() => setShowPayment(true)}
+                >
+                  Buy Now
+                </button>
               )}
               
-              {purchaseStatus?.status === 'error' && (
-                <div className="alert alert-danger">
-                  {purchaseStatus.message}
-                </div>
-              )}
-              
-              <div className="compatibility-info">
-                <h6>Compatible with:</h6>
-                <ul className="compatibility-list">
-                  <li>AIRA Humanoid Robot</li>
-                  <li>ARC Software</li>
-                  <li>ez-b V4 Controller</li>
+              <div className="mt-4">
+                <h6>Includes:</h6>
+                <ul className="list-unstyled">
+                  <li><i className="bi bi-check-circle-fill text-success me-2"></i> Lifetime updates</li>
+                  <li><i className="bi bi-check-circle-fill text-success me-2"></i> Technical support</li>
+                  <li><i className="bi bi-check-circle-fill text-success me-2"></i> Documentation</li>
                 </ul>
               </div>
-            </div>
-            <div className="card-footer">
-              <div className="seller-guarantee">
-                <i className="bi bi-shield-check"></i>
-                <span>Marketplace Guarantee</span>
-              </div>
-            </div>
-          </div>
-          
-          <div className="card author-card mt-4">
-            <div className="card-header">
-              <h5 className="card-title mb-0">About the Author</h5>
-            </div>
-            <div className="card-body">
-              <h6>{listing.author.name}</h6>
-              <div className="author-rating mb-2">
-                <i className="bi bi-star-fill text-warning me-1"></i>
-                <span>{listing.author.rating}</span>
-              </div>
-              <p>{listing.author.bio}</p>
-              <h6>Skills:</h6>
-              <ul className="author-skills">
-                {listing.author.skills && listing.author.skills.map((skill, index) => (
-                  <li key={index}>{skill}</li>
-                ))}
-              </ul>
             </div>
           </div>
         </div>
