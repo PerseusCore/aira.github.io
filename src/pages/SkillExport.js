@@ -183,6 +183,7 @@ const SkillExport = () => {
               delete updatedPositions[name];
               setSavedPositions(updatedPositions);
             }}
+            hideRobotVisualization={true}
           />
           
           {exportStatus.status === 'success' && (
